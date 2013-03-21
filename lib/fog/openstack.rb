@@ -68,7 +68,7 @@ module Fog
 
       return {
         :token => response.headers['X-Auth-Token'],
-        :server_management_url => response.headers['X-Server-Management-Url'],
+        :server_management_url => response.headers['X-Storage-Url'],
         :identity_public_endpoint => response.headers['X-Keystone']
       }
     end

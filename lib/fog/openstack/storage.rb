@@ -131,7 +131,12 @@ module Fog
               :openstack_endpoint_type => 'publicURL'
             }
 
-            credentials = Fog::OpenStack.authenticate_v2(options, @connection_options)
+            if @openstack_auth_uri.path =~ /\/v2.0\//
+
+              credentials = Fog::OpenStack.authenticate_v2(options, @connection_options)
+            else
+              credentials = Fog::OpenStack.authenticate_v1(options, @connection_options)
+            end
 
             @current_user = credentials[:user]
             @current_tenant = credentials[:tenant]
